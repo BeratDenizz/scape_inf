@@ -4,31 +4,32 @@ Created on Sun Aug  6 20:53:20 2023
 
 @author: berta
 """
+#download Bluestack X( a mobile simulator), open Instagram on it then code is ready to run.
 import os
 import time
 import pyautogui
 from datetime import datetime
 import shutil
 
-def instagram_hikaye_ekran_goruntusu():
+def open():
     
-    bluestacks_yolu = r"C:\Program Files (x86)\BlueStacks X\BlueStacks X.exe"
+    bluestacks_path = r"C:\Program Files (x86)\BlueStacks X\BlueStacks X.exe"
 
-    instagram_yolu = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\Instagram.lnk"
+    instagram_path = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\Instagram.lnk"
     
     time.sleep(5)  
     
-    os.startfile(instagram_yolu)
+    os.startfile(instagram_path)
     
     time.sleep(10)  
 
     try:
-        influencer_kullanici_adi = ["fabiabengs,benblack"]
-        for i in influencer_kullanici_adi:
+        usernames = ["fabiabengs,benblack"]
+        for i in usernames:
             
-            pyautogui.click(x=820, y=982)  # Button
+            pyautogui.click(x=820, y=982)  # location of Button
             time.sleep(2)
-            pyautogui.click(x=750, y=84)    # search_box
+            pyautogui.click(x=750, y=84)    # location of search_box
             time.sleep(2)
             pyautogui.typewrite(i)          # username_writer
             time.sleep(2)
@@ -42,8 +43,8 @@ def instagram_hikaye_ekran_goruntusu():
             pyautogui.click(x=707, y=130)  
             
            
-            influencer_klasor_yolu = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\ekran_goruntuleri\{}".format(i)
-            os.makedirs(influencer_klasor_yolu, exist_ok=True)
+            influencer_doc_path = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\ekran_goruntuleri\{}".format(i)
+            os.makedirs(influencer_doc_path, exist_ok=True)
             
            
                
@@ -54,17 +55,16 @@ def instagram_hikaye_ekran_goruntusu():
             width = 522  
             height = 964 
 
-            tarih = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-            ekran_goruntusu_yolu = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\ekran_goruntuleri\{}\{}_{}.png".format(i, i, tarih)
-            ekran_goruntusu = pyautogui.screenshot(ekran_goruntusu_yolu, region=(left, top, width, height))
+            date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            screenshot_path = r"C:\Users\berta\OneDrive\Desktop\INFLOW APP\ekran_goruntuleri\{}\{}_{}.png".format(i, i, date)
+            screenshot = pyautogui.screenshot(screenshot_path, region=(left, top, width, height))
            
                 
             pyautogui.click(x=1153, y=550)  
                 
-            print("{} için ekran görüntüleri kaydedildi!".format(i))
+            print("{} : screenshot taken and saved to file".format(i))
         return i
     except Exception as e:
-        print("Bir hata oluştu:", str(e))
+        print("Error:", str(e))
 
-
-instagram_hikaye_ekran_goruntusu()
+open()
